@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="fr">
+    <meta charset="UTF-8">
+    <!--Page Title-->
+    <title>Hack-Oeil - Les CTFs de Cyrhades</title>
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" title="Favicon" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./assets/css/github.min.css">
+    <script src="./assets/js/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Vérifie si la fenêtre est dans une iframe
+            if (window.self !== window.top) {
+                document.querySelectorAll('a').forEach((link) => {
+                    link.addEventListener('click', (event) => {
+                        const a = event.target.closest('a[href^="http"]');
+                        if (a) {
+                            event.preventDefault();
+                            window.parent.postMessage({
+                                type: "open-external",
+                                url: a.href
+                            }, "*");
+                        }
+                    });
+                });
+            }
+            // Active la coloration syntaxique :
+            if (window.hljs) {
+                hljs.highlightAll();
+            } else {
+                console.error("Highlight.js non chargé !");
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!--Main Content Area-->
+        <main id="content">
+            <!--Ctf-->
+            <section class="ctf scrollto">
+                <article class="row clearfix">
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h3>Challenge #411</h3>
+                            <h2 class="section-title">Very Cute Data</h2>
+                            <p>Ce challenge a pour objectif de vous introduire à l’analyse de capture de signaux
+                                électroniques numériques à l’analyseur logique. La capture qui vous est fournie est au
+                                format <code>vcd</code> (pour Value Change Dump, voir <a target="_blank"
+                                    href="https://sigrok.org/wiki/File_format:Vcd">ici pour plus d’information</a>).
+                                Vous pouvez l’ouvrir avec les
+                                logiciels
+                                <code>pulseview</code> ou <code>GTKWave</code> pour une visualisation des signaux. Vous
+                                pouvez également
+                                utiliser la bibliothèque Python <code>pyDigitalWaveTools.vcd</code> pour manipuler ces
+                                fichiers
+                                (d’autres bibliothèques existent aussi).
+                                <br /><br />
+                                La capture est constituée de deux signaux numériques <code>D0</code> et <code>D1</code>
+                                : le premier
+                                correspond à des données binaires, le second est une horloge. Dans beaucoup de
+                                protocoles de bus de communication, les signaux numériques représentent des données
+                                échantillonnées (“samplées”) sur des fronts d’horloge : cette épreuve va vous permettre
+                                de vous familiariser avec ce concept. Le signal de données qui nous intéresse ici, à
+                                savoir <code>D0</code>, est échantillonné sur les <strong>fronts descendants de
+                                    l’horloge</strong> :
+                                lorsque
+                                <code>D1</code> passe de <code>1</code> à <code>0</code>, l’état de <code>D0</code>
+                                correspond à la valeur à
+                                retenir à cet échantillon
+                                temporel.
+                                <br /><br />
+                                On vous demande d’extraire le binaire contenu entre l’échantillon à 350 micro secondes
+                                et l’échantillon à 2000 micro secondes. Le résultat est une chaîne de bits B qu’il
+                                faudra fournir sous forme <code>FCSC{B}</code> comme flag. A titre d’exemple, le
+                                sampling entre
+                                l’échantillon à 0 et l’échantillon à 350 micro secondes fournirait
+                                <code>FCSC{1000100010}</code>.
+                                <br /><br />
+                                Nous vous conseillons fortement d’automatiser cette extraction, cela vous sera très
+                                utile pour certaines autres épreuves de la catégorie hardware !
+                                <br />
+                                <img src="./assets/images/very_cute_data.png">
+                            </p>
+                            <h4>Fichier à étudier</h4>
+                            <p>
+                                - very-cute-data.vcd
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="row clearfix">
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h3>FCSC 2024</h3>
+                            <h2 class="section-title">Hackropole</h2>
+                            <p class="section-subtitle">
+                                Lien officiel :
+                                <a target="_blank"
+                                    href="https://hackropole.fr/fr/challenges/hardware/fcsc2024-hardware-very-cute-data/">FCSC
+                                    2024 -
+                                    Very Cute Data
+                                </a>
+                                <br />
+                                Auteur: rbe
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="row clearfix">
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h3>Apprentissage</h3>
+                            <h2 class="section-title">Documentations et Vidéos</h2>
+                            <p class="section-subtitle">
+                                Aucune documentation pour le moment
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="row clearfix">
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h3>Aide</h3>
+                            <h2 class="section-title">Conseils et indices</h2>
+                            <p class="section-subtitle">
+                                <a target="_blank"
+                                    href="https://discord.com/channels/1175764392307077120/1175764601716092948">Fil sur
+                                    le Discord</a>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <!--End of Ctf-->
+        </main>
+        <!--End Main Content Area-->
+
+        <a id="scrollUp" href="#wrapper" style="position: fixed; z-index: 1000;"
+            aria-label="Remonter en haut de la page" title="Remonter en tête de site"></a>
+    </div>
+</body>
+
+</html>
